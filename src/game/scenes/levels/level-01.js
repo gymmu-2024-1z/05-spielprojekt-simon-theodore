@@ -60,6 +60,8 @@ export default class Level01 extends Base2DScene {
   pickUp(actor, item) {
     super.pickUp(actor, item)
 
+    console.log(item)
+
     // TODO: Hier wird die Logik für Kollisionen von Spielobjekten geändert. Das
     // ist pro Level anders. Wenn eine Logik für alle Levels gelten soll, dann
     // muss dies in `Base2DScene` angepasst werden.
