@@ -166,9 +166,11 @@ export default class Base2DScene extends Phaser.Scene {
   }
 
   collideEnemy(actor, npc) {
-    npc.destroy()
+    //npc.destroy()
+    actor.damage(5)
 
-    actor.setScale(0.5)
+    const currX = actor.x
+    actor.x = currX - 50
   }
 
   /**
