@@ -163,6 +163,14 @@ export default class Base2DScene extends Phaser.Scene {
    */
   pickUp(actor, item) {
     item.destroy()
+    if (item instanceof Flower) {
+      actor.addKey("level-02")
+      actor.increaseSpeed(100)
+      actor.heal(item.props.restoreHp || 0)
+    } else if (item instanceof Mushroom) {
+      actor.decreaseSpeed(100)
+      actor.damage(item.props.damageHp || 0)
+    }
   }
 
   collideEnemy(actor, npc) {
