@@ -98,7 +98,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     if (value == null) value = 0
     this.hp = this.hp + value
     if (this.hp > this.maxHp) {
-      this.hp = this.mapHp
+      this.hp = this.maxHp
     }
 
     // Die Lebenspunkte des Spielers wurden verändert, also schicken wir das
@@ -116,12 +116,13 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
    *
    * @param {integer} value Der Schaden der dem Spieler zugefügt werden soll.
    */
+
   damage(value) {
     if (value == null) value = 0
     this.hp = this.hp - value
     if (this.hp <= 0) {
-      // TODO: Game-Over Mechanik implementieren.
       this.hp = 0
+      this.die()
     }
 
     // Gleich wie bei `heal()`
@@ -171,5 +172,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     if (this.keys[keyName] <= 0) {
       this.keys[keyName] = null
     }
+  }
+  die() {
+    this.scene.scene.start("game-over-scene")
   }
 }
