@@ -125,6 +125,13 @@ export default class Base2DScene extends Phaser.Scene {
       () => true,
       this,
     )
+    this.physics.add.overlap(
+      this.player,
+      this.npcs,
+      this.collideEnemy,
+      () => true,
+      this,
+    )
 
     this.physics.add.collider(
       this.player,
@@ -156,6 +163,22 @@ export default class Base2DScene extends Phaser.Scene {
    */
   pickUp(actor, item) {
     item.destroy()
+    if (item instanceof Flower) {
+      actor.addKey("level-02")
+      actor.increaseSpeed(100)
+      actor.heal(item.props.restoreHp || 0)
+    } else if (item instanceof Mushroom) {
+      actor.decreaseSpeed(100)
+      actor.damage(5)
+    }
+  }
+
+  collideEnemy(actor, npc) {
+    //npc.destroy()
+    actor.damage(5)
+
+    const currX = actor.x
+    actor.x = currX - 50
   }
 
   /**
