@@ -169,7 +169,7 @@ export default class Base2DScene extends Phaser.Scene {
       actor.heal(item.props.restoreHp || 0)
     } else if (item instanceof Mushroom) {
       actor.decreaseSpeed(100)
-      actor.damage(item.props.damageHp || 0)
+      actor.damage(5)
     }
   }
 
